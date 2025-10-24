@@ -1,0 +1,218 @@
+﻿<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>주간 히트송 quiz.html</title>
+    <style>
+        table {
+            border: 3px solid black;
+            width: 800px;
+            margin: 40px auto;
+            border-collapse: collapse;
+        }
+
+        body {
+            font-size: 32px;
+            font-family: "맑은 고딕", sans-serif;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 48px;
+        }
+
+        hr {
+            border: 2px solid red;
+        }
+
+        ol {
+            list-style-position: inside;
+            padding-left: 40px;
+        }
+
+        td {
+            padding: 10px;
+        }
+
+        img {
+            width: 100px;
+            height: 100px;
+            vertical-align: middle;
+            border-radius: 10px;
+            margin-right: 20px;
+        }
+
+        a {
+            text-decoration: none;
+            color: purple;
+            font-weight: bold;
+            font-size: 36px;
+        }
+
+            a:hover {
+                text-decoration: underline;
+                color: blue;
+            }
+
+        audio {
+            display: none;
+        }
+
+        .controls {
+            margin: 20px auto;
+            text-align: center;
+            padding: 20px;
+            background-color: #f0f0f0;
+            border-radius: 10px;
+        }
+
+        .control-btn {
+            font-size: 24px;
+            padding: 10px 20px;
+            margin: 0 10px;
+            cursor: pointer;
+            border: 2px solid #333;
+            border-radius: 5px;
+            background-color: #fff;
+        }
+
+            .control-btn:hover {
+                background-color: #e0e0e0;
+            }
+
+        .volume-control {
+            margin: 15px 0;
+            font-size: 24px;
+        }
+
+        .volume-slider {
+            width: 300px;
+            height: 10px;
+            vertical-align: middle;
+        }
+
+        .now-playing {
+            font-size: 28px;
+            color: #333;
+            margin: 10px 0;
+            font-weight: bold;
+        }
+    </style>
+    <script>
+        let currentAudio = null;
+
+        function playSong(id, title) {
+            const song = document.getElementById(id);
+
+            // 같은 곡을 다시 클릭하면 일시정지/재생 토글
+            if (currentAudio === song) {
+                if (song.paused) {
+                    song.play();
+                } else {
+                    song.pause();
+                }
+                return;
+            }
+
+            // 다른 곡이면 모든 오디오 정지
+            const audios = document.querySelectorAll('audio');
+            audios.forEach(audio => {
+                audio.pause();
+                audio.currentTime = 0;
+            });
+
+            // 선택한 오디오 재생
+            currentAudio = song;
+            song.play();
+
+            // 현재 재생 중인 곡 표시
+            document.getElementById('nowPlaying').textContent = '재생 중: ' + title;
+        }
+
+        function pauseMusic() {
+            if (currentAudio) {
+                currentAudio.pause();
+            }
+        }
+
+        function playMusic() {
+            if (currentAudio) {
+                currentAudio.play();
+            }
+        }
+
+        function stopMusic() {
+            if (currentAudio) {
+                currentAudio.pause();
+                currentAudio.currentTime = 0;
+                document.getElementById('nowPlaying').textContent = '재생 중인 곡이 없습니다';
+            }
+        }
+
+        function changeVolume(value) {
+            const audios = document.querySelectorAll('audio');
+            audios.forEach(audio => {
+                audio.volume = value / 100;
+            });
+            document.getElementById('volumeValue').textContent = value + '%';
+        }
+
+        // 페이지 로드 시 초기 볼륨 설정
+        window.onload = function() {
+            changeVolume(50);
+        }
+    </script>
+</head>
+<body>
+    <table>
+        <tr>
+            <td>
+                <h1>주간 히트 가요</h1>
+                <hr>
+
+                <div class="controls">
+                    <div class="now-playing" id="nowPlaying">재생 중인 곡이 없습니다</div>
+                    <button class="control-btn" onclick="playMusic()">▶ 재생</button>
+                    <button class="control-btn" onclick="pauseMusic()">⏸ 일시정지</button>
+                    <button class="control-btn" onclick="stopMusic()">⏹ 정지</button>
+                    <div class="volume-control">
+                        🔊 볼륨:
+                        <input type="range" min="0" max="100" value="50" class="volume-slider"
+                               onchange="changeVolume(this.value)" oninput="changeVolume(this.value)">
+                        <span id="volumeValue">50%</span>
+                    </div>
+                </div>
+
+                <hr>
+
+                <ol>
+                    <li>
+                        <img src="ch02_music/again.jpg" alt="김동률">
+                        <a href="#" onclick="playSong('song1', '다시 사랑한다 말할까 - 김동률'); return false;">다시 사랑한다 말할까</a> (김동률)
+                        <audio id="song1" src="ch02_music/again.mp3"></audio>
+                    </li>
+                    <li>
+                        <img src="ch02_music/igotc.jpg" alt="박명수">
+                        <a href="#" onclick="playSong('song2', 'I Got C - 박명수'); return false;">I Got C</a> (박명수)
+                        <audio id="song2" src="ch02_music/igotc.mp3"></audio>
+                    </li>
+                    <li>
+                        <img src="ch02_music/iloveu.jpg" alt="악동뮤지션">
+                        <a href="#" onclick="playSong('song3', 'I Love You - 악동뮤지션'); return false;">I Love You</a> (악동뮤지션)
+                        <audio id="song3" src="iloveu.mp3"></audio>
+                    </li>
+                    <li>
+                        <img src="ch02_music/imsosexy.jpg" onclick="playSong('song4', 'I\'m so Sexy - 유재석'); return false;">I'm so Sexy</a> (유재석)
+                        <audio id="song4" src="imsosexy.mp3"></audio>
+                    </li>
+                    <li>
+                        <img src="ch02_music/fantastic.jpg" alt="빅뱅">
+                        <a href="#" onclick="playSong('song5', '판타스틱 베이비 - 빅뱅'); return false;">판타스틱 베이비</a> (빅뱅)
+                        <audio id="song5" src="ch02_music/fantastic.mp3"></audio>
+                    </li>
+                </ol>
+            </td>
+        </tr>
+    </table>
+</body>
+</html>

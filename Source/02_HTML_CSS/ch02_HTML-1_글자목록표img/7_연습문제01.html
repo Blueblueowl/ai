@@ -1,0 +1,118 @@
+﻿<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>주간 히트송 quiz.html</title>
+    <style>
+        table {
+            border: 3px solid black;
+            width: 840px; /* 기존 420px → 2배 */
+            margin: 40px auto;
+            border-collapse: collapse;
+        }
+
+        body {
+            font-size: 32px; /* 전체 글자 크기 2배 */
+            font-family: "맑은 고딕", sans-serif;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 48px; /* 제목 글씨 더 크게 */
+        }
+
+        hr {
+            border: 2px solid red; /* 굵게 */
+        }
+
+        ol {
+            list-style-position: inside;
+            padding-left: 40px;
+        }
+
+        td {
+            padding: 10px;
+        }
+
+        img {
+            width: 100px; /* 50 → 100 */
+            height: 100px; /* 50 → 100 */
+            vertical-align: middle;
+            border-radius: 10px;
+            margin-right: 20px;
+        }
+
+        a {
+            text-decoration: none;
+            color: purple;
+            font-weight: bold;
+            font-size: 36px; /* 링크 글씨 크게 */
+        }
+
+            a:hover {
+                text-decoration: underline;
+                color: blue;
+            }
+
+        audio {
+            display: none; /* 화면에는 숨기고 JS로 제어 */
+        }
+    </style>
+
+    <script>
+        function playSong(id) {
+            // 모든 오디오를 정지
+            const audios = document.querySelectorAll('audio');
+            audios.forEach(audio => {
+                audio.pause();
+                audio.currentTime = 0;
+            });
+            // 선택된 오디오 재생
+            const song = document.getElementById(id);
+            song.play();
+        }
+    </script>
+</head>
+
+<body>
+    <table>
+        <tr>
+            <td>
+                <h1>주간 히트 가요</h1>
+                <hr>
+                <ol>
+                    <li>
+                        <img src="ch02_music/again.jpg" alt="김동률">
+                        <a href="#" onclick="playSong('song1')">다시 사랑한다 말할까</a> (김동률)
+                        <audio id="song1" src="ch02_music/again.mp3"></audio>
+                    </li>
+
+                    <li>
+                        <img src="ch02_music/fantastic.jpg" alt="빅뱅">
+                        <a href="#" onclick="playSong('song2')">판타스틱 베이비</a> (빅뱅)
+                        <audio id="song2" src="ch02_music/fantastic.mp3"></audio>
+                    </li>
+
+                    <li>
+                        <img src="ch02_music/iloveu.jpg" alt="악동뮤지션">
+                        <a href="#" onclick="playSong('song3')">I Love You</a> (악동뮤지션)
+                        <audio id="song3" src="ch02_music/iloveu.mp3"></audio>
+                    </li>
+
+                    <li>
+                        <img src="ch02_music/imsosexy.jpg" alt="유재석">
+                        <a href="#" onclick="playSong('song4')">I'm so Sexy</a> (유재석)
+                        <audio id="song4" src="ch02_music/imsosexy.mp3"></audio>
+                    </li>
+
+                    <li>
+                        <img src="ch02_music/igotc.jpg" alt="박명수">
+                        <a href="#" onclick="playSong('song5')">I Got C</a> (박명수)
+                        <audio id="song5" src="ch02_music/igotc.mp3"></audio>
+                    </li>
+                </ol>
+            </td>
+        </tr>
+    </table>
+</body>
+</html>
