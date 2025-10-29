@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>반응형 + Hover 효과 레이아웃</title>
+    <style>
+        /* 기본 스타일 */
+        body {
+            margin: 0;
+            padding: 0;
+            text-align: center;
+            font-family: Arial, sans-serif;
+        }
+
+        /* 헤더 */
+        #header {
+            background-color: yellow;
+            padding: 20px;
+            border: 1px solid black;
+        }
+
+        /* 내비게이션 */
+        #nav {
+            margin: 10px auto;
+            padding: 10px;
+            border: 1px solid black;
+            width: 80%;
+        }
+
+        ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        li {
+            display: inline-block;
+            background-color: pink;
+            margin: 3px;
+            padding: 10px 20px;
+            border-radius: 15px;
+            border: 1px solid #d88;
+            font-weight: bold;
+            cursor: pointer; /* 마우스 커서 변경 */
+            transition: all 0.3s ease; /* 부드러운 애니메이션 */
+        }
+
+        /* ✅ Hover 효과 */
+        li:hover {
+            background-color: hotpink;
+            color: white;
+            transform: scale(1.05); /* 살짝 확대 */
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        /* 메인 콘텐츠 영역 */
+        #main {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin: 10px auto;
+            width: 80%;
+        }
+
+        #content {
+            flex: 3;
+            background-color: white;
+            border: 1px solid gray;
+            padding: 20px;
+            min-height: 200px;
+        }
+
+        #banner {
+            flex: 1;
+            background-color: white;
+            border: 1px solid gray;
+            padding: 20px;
+            min-height: 200px;
+        }
+
+        /* 푸터 */
+        #footer {
+            background-color: yellow;
+            padding: 20px;
+            border: 1px solid black;
+            margin-top: 10px;
+        }
+
+        /* ✅ 반응형 설정 */
+        @media screen and (max-width: 768px) {
+            #main {
+                flex-direction: column;
+                width: 90%;
+            }
+
+            #content, #banner {
+                width: 100%;
+                min-height: 150px;
+            }
+
+            li {
+                display: block;
+                width: 80%;
+                margin: 5px auto;
+            }
+
+            /* 모바일에서 hover 대신 클릭 느낌만 남김 */
+            li:hover {
+                transform: none;
+                box-shadow: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="header">
+        HEADER
+    </div>
+
+    <div id="nav">
+        <div>NAVIGATION</div>
+        <ul>
+            <li>menu1</li>
+            <li>menu2</li>
+            <li>menu3</li>
+            <li>menu4</li>
+            <li>menu5</li>
+        </ul>
+    </div>
+
+    <div id="main">
+        <div id="content">CONTENT</div>
+        <div id="banner">BANNER</div>
+    </div>
+
+    <div id="footer">
+        FOOTER
+    </div>
+</body>
+</html>
