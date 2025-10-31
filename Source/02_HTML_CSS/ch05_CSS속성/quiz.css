@@ -18,6 +18,46 @@ div{
 }
 /***** #header *****/
 #header{
-  height:100px; line-height: 100px;
+  line-height: 100px;
+  background-color: yellow;
+}
+/***** #nav *****/
+#nav p{ height:40px; line-height: 40px;}
+#nav ul {
+  width:700px; margin: 0 auto;
+  overflow: hidden;
+}
+#nav ul li{
+  float: left;
+  line-height: 50px;
+  background-color: pink;
+  /* margin: 0.5%;  width:19%;  */
+  margin: 2px;
+  width:136px; /* 700/5=140px */
+}
+#nav ul li:first-child{
+  border-radius: 20px 0 0 20px;
+}
+#nav ul li:last-child{
+  border-radius: 0 20px 20px 0;
+}
+/***** #section *****/
+#section{ 
+  overflow: hidden;
+  /* 전체 800px에서 margin, padding, border 뺀, width는 778px됨 */
+}
+#section #content{
+  float: left;
+  width: 578px; /* 578 + 10(좌우margin) + 10(좌우padding) + 2(좌우border)=600필요*/
+  height: 200px;
+}
+#section #banner{
+  float: left;
+  width: 154px; /*176px필요(margin,padding,border)*/
+  height: 200px;  
+}
+/***** #footer *****/
+#footer{
+  line-height: 100px;
   background-color: yellow;
 }
