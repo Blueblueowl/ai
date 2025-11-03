@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+
+<html lang="ko">
+
+<head>
+
+  <meta charset="UTF-8" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>두 수 비교</title>
+
+  <style>
+
+    p { text-align: center; }
+
+    fieldset {
+
+      max-width: 400px;
+
+      margin: 50px auto;
+
+      padding: 20px;
+
+    }
+
+  </style>
+
+  <script>
+
+    function chk(){
+
+      // 1. 첫 번째 수 검증
+
+      if(!frm.su1.value){
+
+        alert("첫번째 수를 입력하세요");
+
+        frm.su1.focus();
+
+        return false; // 여기서 종료
+
+      }
+
+      
+
+      // 2. 두 번째 수 검증
+
+      if(!frm.su2.value){
+
+        alert("두번째 수를 입력하세요");
+
+        frm.su2.focus(); // ✅ 괄호 추가
+
+        return false; // 여기서 종료
+
+      }
+
+      
+
+      // 3. 입력값 가져오기 (숫자로 변환)
+
+      const su1 = Number(frm.su1.value);
+
+      const su2 = Number(frm.su2.value);
+
+      
+
+      // 4. 두 수 비교
+
+      let message = '';
+
+      
+
+      if(su1 > su2){
+
+        const diff = su1 - su2;
+
+        message = `첫 번째 수가 ${diff}만큼 더 큽니다.`;
+
+      } else if(su2 > su1){
+
+        const diff = su2 - su1;
+
+        message = `두 번째 수가 ${diff}만큼 더 큽니다.`;
+
+      } else {
+
+        message = '두 수가 같습니다.';
+
+      }
+
+      
+
+      // 5. 결과 출력
+
+      alert(message); // alert 메시지
+
+      document.body.innerHTML += `<p style="color:blue; font-size:20px; font-weight:bold;">${message}</p>`; // body에 추가
+
+      
+
+      return false; // 폼 제출 방지
+
+    }
+
+  </script>
+
+</head>
+
+<body>
+
+  <form name="frm" onsubmit="return chk()">
+
+    <fieldset>
+
+      <legend>두 수 비교</legend>
+
+      <p>첫번째 수 : <input type="number" name="su1"></p>
+
+      <p>두번째 수 : <input type="number" name="su2"></p>
+
+      <p><input type="submit" value="결과"></p>
+
+    </fieldset>
+
+  </form>
+
+</body>
+
+</html>
