@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>배경 전환 타이머</title>
+  <style>
+    body {
+      background-size: cover;
+      background-image: url(ch05_img/img03.png);
+      color: white;
+      font-size: 1.5em;
+      text-align: center;
+      padding-top: 20%;
+      transition: background-image 5s ease, color 1s ease;
+    }
+  </style>
+</head>
+<body>
+  <div id="displayArea"></div>
+
+  <script>
+    // 변수 이름 변경 및 의미 명확화
+    let elapsedSeconds = 0;  // sec → elapsedSeconds
+    const bgImages = [
+      'url(ch05_img/img03.png)',
+      'url(ch05_img/img01.png)',
+      'url(ch05_img/img02.png)'
+    ]; // img → bgImages
+    const textColors = ['white', 'yellow', 'blue']; // color → textColors
+    const outputBox = document.getElementById('displayArea'); // 출력 영역
+
+    // 1초마다 실행되는 함수
+    const intervalId = setInterval(() => {
+      elapsedSeconds++;
+      const index = elapsedSeconds % bgImages.length;
+
+      // 화면 업데이트
+      document.body.style.backgroundImage = bgImages[index];
+      document.body.style.color = textColors[index];
+      outputBox.innerHTML = `
+        ${new Date().toLocaleString()}<br>
+        ${elapsedSeconds}초 지남
+      `;
+    }, 1000);
+
+    // 10초 후 타이머 정지
+    setTimeout(() => {
+      clearInterval(intervalId);
+      outputBox.innerHTML += '<br> - 타이머 중지 -';
+    }, 10000);
+  </script>
+</body>
+</html>

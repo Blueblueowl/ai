@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dynamic Background Timer</title>
+
+  <style>
+    body {
+      background-size: cover;
+      background-image: url(ch05_img/img03.png);
+      color: white;
+      font-size: 1.6em;
+      text-align: center;
+      padding-top: 15%;
+      transition: background-image 10s ease-in-out, color 0.5s ease;
+      font-family: "Segoe UI", sans-serif;
+    }
+
+    #statusPanel {
+      background: rgba(0, 0, 0, 0.4);
+      display: inline-block;
+      padding: 20px 40px;
+      border-radius: 15px;
+      box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
+    }
+
+    #controlButtons {
+      margin-top: 30px;
+    }
+
+    button {
+      font-size: 1em;
+      margin: 0 10px;
+      padding: 10px 25px;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      background-color: rgba(255, 255, 255, 0.2);
+      color: white;
+      transition: background-color 0.3s;
+    }
+
+    button:hover {
+      background-color: rgba(255, 255, 255, 0.5);
+    }
+
+    button:disabled {
+      background-color: rgba(255, 255, 255, 0.1);
+      cursor: not-allowed;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="statusPanel">
+    <div id="timeDisplay"></div>
+    <div id="elapsedDisplay"></div>
+  </div>
+
+  <div id="controlButtons">
+    <button id="startBtn">▶ 시작</button>
+    <button id="stopBtn" disabled>⏸ 정지</button>
+  </div>
+
+  <script>
+    // 🌈 멋진 변수 이름 세팅
+    let elapsedTime = 0; // 경과 시간
+    const bgGallery = [
+      'url(ch05_img/img03.png)',
+      'url(ch05_img/img01.png)',
+      'url(ch05_img/img02.png)'
+    ];
+    const fontPalette = ['white', 'yellow', 'deepskyblue'];
+    let rotationTimer = null; // setInterval ID 저장용
+
+    const timeBox = document.getElementById('timeDisplay');
+    const elapsedBox = document.getElementById('elapsedDisplay');
+    const startButton = document.getElementById('startBtn');
+    const stopButton = document.getElementById('stopBtn');
+
+    // 🔄 타이머 실행 함수
+    const activateTimer = () => {
+      startButton.disabled = true;
+      stopButton.disabled = false;
+      elapsedTime = 0;
+
+      rotationTimer = setInterval(() => {
+        elapsedTime++;
+        const currentIndex = elapsedTime % bgGallery.length;
+
+        // 배경 및 글자색 전환
+        document.body.style.backgroundImage = bgGallery[currentIndex];
+        document.body.style.color = fontPalette[currentIndex];
+
+        // 시간 표시
+        timeBox.innerHTML = new Date().toLocaleString();
+        elapsedBox.innerHTML = `${elapsedTime}초 경과`;
+
+        // 10초 지나면 자동 정지
+        if (elapsedTime >= 10) {
+          deactivateTimer();
+          elapsedBox.innerHTML += "<br>⏹ 자동 정지 완료";
+        }
+      }, 1000);
+    };
+
+    // 🛑 타이머 중지 함수
+    const deactivateTimer = () => {
+      clearInterval(rotationTimer);
+      startButton.disabled = false;
+      stopButton.disabled = true;
+    };
+
+    // 🎮 버튼 이벤트 연결
+    startButton.addEventListener('click', activateTimer);
+    stopButton.addEventListener('click', deactivateTimer);
+  </script>
+</body>
+</html>
