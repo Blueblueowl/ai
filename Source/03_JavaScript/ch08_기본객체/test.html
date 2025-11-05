@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="utf-8" />
+  <title>회원가입</title>
+  <style>
+    table {width:350px; margin:20px auto; padding:20px 10px;}
+    table, input[type='text'], input[type='password'] {
+        border: 1px solid #385d81;
+        outline: 1px solid #385d81;
+        padding: 2px;
+    }
+    input[type='submit'], input[type='reset'], input[type='button'], button{
+        background-color: #385d81;
+        border:0; outline:0;
+        color:white;
+        border-radius: 3px;
+        padding:10px 20px;
+        margin:5px;
+    }
+    td, th { padding:5px 10px; text-align:center;}
+  </style>
+  <script>
+    function joinCheck() {
+      // 폼 요소 가져오기
+      let frm = document.frm;
+      let name = frm.name.value.trim();
+      let mail = frm.mail.value.trim();
+      let pw = frm.pw.value;
+      let pwChk = frm.pwChk.value;
+      
+      // 1. 이름 검증: 특수문자와 숫자 및 공백 2글자 이상
+      let namePattern = /^[가-힣a-zA-Z]{2,}$/;
+      if (!namePattern.test(name)) {
+        alert('이름은 특수문자와 숫자를 제외한 2글자 이상이어야 합니다.');
+        frm.name.focus();
+        return false;
+      }
+      
+      // 2. 이메일 검증: 올바른 메일 형식
+      let mailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+      if (!mailPattern.test(mail)) {
+        alert('올바른 메일 형식에 맞춰 입력하세요.');
+        frm.mail.focus();
+        return false;
+      }
+      
+      // 3. 비밀번호 검증: 소문자, 대문자, 숫자, 특수문자를 섞어서 4글자 이상
+      let pwPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]).{4,}$/;
+      if (!pwPattern.test(pw)) {
+        alert('비밀번호는 소문자, 대문자, 숫자, 특수문자를 섞어서 4글자 이상이어야 합니다.');
+        frm.pw.focus();
+        return false;
+      }
+      
+      // 4. 비밀번호 확인: 두 개가 같아야 함
+      if (pw !== pwChk) {
+        alert('비밀번호가 일치하지 않습니다.');
+        frm.pwChk.focus();
+        return false;
+      }
+      
+      // 모든 검증 통과
+      alert('회원가입이 완료되었습니다!');
+      return true;
+    }
+  </script>
+</head>
+<body>
+  <form action="#" name="frm" onsubmit="return joinCheck()">
+    <table>
+      <tr>
+        <th>이름</th>
+        <td>
+          <input type="text" name="name" placeholder="특수문자와 숫자 및 공백 못 와(2글자이상)"
+            autofocus="autofocus"/>
+        </td>
+      </tr>
+      <tr>
+        <th>메일</th>
+        <td><input type="text" name="mail" placeholder="메일 형식에 맞추세요" /></td>
+      </tr>
+      <tr>
+        <th>비밀번호</th>
+        <td><input type="password" name="pw" placeholder="소문자,대문자,숫자,특수문자 포함 4글자 이상" /></td>
+      </tr>
+      <tr>
+        <th>비밀번호확인</th>
+        <td><input type="password" name="pwChk" placeholder="비밀번호 재입력" /></td>
+      </tr>
+      <tr>
+        <td colspan="2">
+          <input type="submit" value="회원가입" />
+          <input type="reset" value="취소" />
+          <input type="button" value="로그인" onclick="location.href='login.html'" />
+        </td>
+      </tr>
+    </table>
+  </form>
+</body>
+</html>

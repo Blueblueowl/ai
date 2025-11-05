@@ -1,0 +1,1103 @@
+html
+
+​
+
+​
+
+<!DOCTYPE html>
+
+<html lang="ko" xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+  <meta charset="utf-8" />
+
+  <title>회원가입</title>
+
+  <style>
+
+    * {
+
+        margin: 0;
+
+        padding: 0;
+
+        box-sizing: border-box;
+
+    }
+
+    
+
+    body {
+
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+
+        min-height: 100vh;
+
+        display: flex;
+
+        justify-content: center;
+
+        align-items: center;
+
+        padding: 20px;
+
+    }
+
+    
+
+    .registration-container {
+
+        background: white;
+
+        border-radius: 20px;
+
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+
+        overflow: hidden;
+
+        max-width: 500px;
+
+        width: 100%;
+
+    }
+
+    
+
+    .registration-header {
+
+        background: linear-gradient(135deg, #385d81 0%, #2c4a65 100%);
+
+        color: white;
+
+        padding: 30px;
+
+        text-align: center;
+
+    }
+
+    
+
+    .registration-header h1 {
+
+        font-size: 28px;
+
+        margin-bottom: 10px;
+
+    }
+
+    
+
+    .registration-header p {
+
+        font-size: 14px;
+
+        opacity: 0.9;
+
+    }
+
+    
+
+    table {
+
+        width: 100%;
+
+        padding: 30px;
+
+    }
+
+    
+
+    th {
+
+        text-align: left;
+
+        padding: 15px 10px 5px;
+
+        font-weight: 600;
+
+        color: #333;
+
+        font-size: 14px;
+
+    }
+
+    
+
+    td {
+
+        padding: 5px 10px 15px;
+
+    }
+
+    
+
+    .input-group {
+
+        position: relative;
+
+        width: 100%;
+
+    }
+
+    
+
+    input[type='text'], 
+
+    input[type='password'] {
+
+        width: 100%;
+
+        border: 2px solid #e0e0e0;
+
+        outline: none;
+
+        padding: 12px 15px;
+
+        font-size: 14px;
+
+        border-radius: 8px;
+
+        transition: all 0.3s ease;
+
+        background: #f8f9fa;
+
+    }
+
+    
+
+    input[type='text']:focus, 
+
+    input[type='password']:focus {
+
+        border-color: #385d81;
+
+        background: white;
+
+        box-shadow: 0 0 0 3px rgba(56, 93, 129, 0.1);
+
+    }
+
+    
+
+    input.input-error {
+
+        border-color: #ff4444;
+
+        background: #fff5f5;
+
+    }
+
+    
+
+    input.input-success {
+
+        border-color: #44ff44;
+
+        background: #f5fff5;
+
+    }
+
+    
+
+    .error-message {
+
+        color: #ff4444;
+
+        font-size: 12px;
+
+        margin-top: 5px;
+
+        display: none;
+
+        padding-left: 5px;
+
+    }
+
+    
+
+    .error-message.show {
+
+        display: block;
+
+        animation: slideDown 0.3s ease;
+
+    }
+
+    
+
+    @keyframes slideDown {
+
+        from {
+
+            opacity: 0;
+
+            transform: translateY(-10px);
+
+        }
+
+        to {
+
+            opacity: 1;
+
+            transform: translateY(0);
+
+        }
+
+    }
+
+    
+
+    .password-strength {
+
+        margin-top: 5px;
+
+        font-size: 12px;
+
+        font-weight: 600;
+
+        display: none;
+
+    }
+
+    
+
+    .password-strength.show {
+
+        display: block;
+
+    }
+
+    
+
+    .strength-bar {
+
+        height: 4px;
+
+        background: #e0e0e0;
+
+        border-radius: 2px;
+
+        margin-top: 5px;
+
+        overflow: hidden;
+
+    }
+
+    
+
+    .strength-bar-fill {
+
+        height: 100%;
+
+        transition: all 0.3s ease;
+
+        border-radius: 2px;
+
+    }
+
+    
+
+    .button-group {
+
+        display: flex;
+
+        gap: 10px;
+
+        padding: 10px;
+
+    }
+
+    
+
+    input[type='submit'], 
+
+    input[type='reset'], 
+
+    input[type='button'], 
+
+    button {
+
+        flex: 1;
+
+        background: linear-gradient(135deg, #385d81 0%, #2c4a65 100%);
+
+        border: 0;
+
+        outline: 0;
+
+        color: white;
+
+        border-radius: 8px;
+
+        padding: 14px 20px;
+
+        font-size: 15px;
+
+        font-weight: 600;
+
+        cursor: pointer;
+
+        transition: all 0.3s ease;
+
+        box-shadow: 0 4px 15px rgba(56, 93, 129, 0.3);
+
+    }
+
+    
+
+    input[type='submit']:hover, 
+
+    input[type='button']:hover {
+
+        transform: translateY(-2px);
+
+        box-shadow: 0 6px 20px rgba(56, 93, 129, 0.4);
+
+    }
+
+    
+
+    input[type='reset'] {
+
+        background: linear-gradient(135deg, #6c757d 0%, #5a6268 100%);
+
+        box-shadow: 0 4px 15px rgba(108, 117, 125, 0.3);
+
+    }
+
+    
+
+    input[type='reset']:hover {
+
+        transform: translateY(-2px);
+
+        box-shadow: 0 6px 20px rgba(108, 117, 125, 0.4);
+
+    }
+
+    
+
+    .validation-icon {
+
+        position: absolute;
+
+        right: 15px;
+
+        top: 50%;
+
+        transform: translateY(-50%);
+
+        font-size: 18px;
+
+        display: none;
+
+    }
+
+    
+
+    .validation-icon.show {
+
+        display: block;
+
+    }
+
+  </style>
+
+  <script>
+
+    // 정규표현식 패턴들을 상수로 선언 (성능 최적화)
+
+    const VALIDATION_PATTERNS = {
+
+        fullName: /^[가-힣a-zA-Z]{2,}$/,
+
+        email: /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
+
+        strongPassword: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]).{4,}$/
+
+    };
+
+    
+
+    // 일반적인 약한 비밀번호 목록
+
+    const COMMON_PASSWORDS = [
+
+        'password', '123456', '12345678', 'qwerty', 'abc123',
+
+        'password123', '1234567', 'admin', 'letmein', 'welcome'
+
+    ];
+
+    
+
+    // 메인 유효성 검사 함수
+
+    function validateRegistrationForm() {
+
+        const registrationForm = document.frm;
+
+        const userFullName = registrationForm.name.value.trim();
+
+        const userEmailAddress = registrationForm.mail.value.trim();
+
+        const userPassword = registrationForm.pw.value;
+
+        const confirmedPassword = registrationForm.pwChk.value;
+
+      
+
+        // 1. 이름 검증
+
+        if (!VALIDATION_PATTERNS.fullName.test(userFullName)) {
+
+            showValidationError(
+
+                registrationForm.name,
+
+                '이름은 특수문자와 숫자를 제외한 2글자 이상이어야 합니다.'
+
+            );
+
+            return false;
+
+        }
+
+      
+
+        // 2. 이메일 검증
+
+        if (!VALIDATION_PATTERNS.email.test(userEmailAddress)) {
+
+            showValidationError(
+
+                registrationForm.mail,
+
+                '올바른 이메일 형식에 맞춰 입력하세요.\n예: user@example.com'
+
+            );
+
+            return false;
+
+        }
+
+      
+
+        // 3. 비밀번호 강도 검증
+
+        if (!VALIDATION_PATTERNS.strongPassword.test(userPassword)) {
+
+            showValidationError(
+
+                registrationForm.pw,
+
+                '비밀번호는 소문자, 대문자, 숫자, 특수문자를 섞어서 4글자 이상이어야 합니다.'
+
+            );
+
+            return false;
+
+        }
+
+        
+
+        // 4. 일반적인 비밀번호 체크
+
+        if (COMMON_PASSWORDS.includes(userPassword.toLowerCase())) {
+
+            showValidationError(
+
+                registrationForm.pw,
+
+                '너무 일반적인 비밀번호입니다. 더 복잡한 비밀번호를 사용하세요.'
+
+            );
+
+            return false;
+
+        }
+
+      
+
+        // 5. 비밀번호 확인
+
+        if (userPassword !== confirmedPassword) {
+
+            showValidationError(
+
+                registrationForm.pwChk,
+
+                '비밀번호가 일치하지 않습니다.'
+
+            );
+
+            return false;
+
+        }
+
+      
+
+        // 모든 검증 통과
+
+        showSuccessMessage('✨ 회원가입이 완료되었습니다!');
+
+        return true;
+
+    }
+
+    
+
+    // 유효성 검사 오류 표시 함수
+
+    function showValidationError(inputElement, message) {
+
+        alert(message);
+
+        inputElement.focus();
+
+        inputElement.classList.add('input-error');
+
+        inputElement.classList.remove('input-success');
+
+        
+
+        // 흔들림 애니메이션
+
+        inputElement.style.animation = 'shake 0.5s';
+
+        setTimeout(() => {
+
+            inputElement.style.animation = '';
+
+        }, 500);
+
+    }
+
+    
+
+    // 성공 메시지 표시 함수
+
+    function showSuccessMessage(message) {
+
+        alert(message);
+
+    }
+
+    
+
+    // 비밀번호 강도 계산 함수
+
+    function calculatePasswordStrength(password) {
+
+        let strength = 0;
+
+        const checks = {
+
+            length: password.length >= 8,
+
+            lowercase: /[a-z]/.test(password),
+
+            uppercase: /[A-Z]/.test(password),
+
+            number: /\d/.test(password),
+
+            special: /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/.test(password)
+
+        };
+
+        
+
+        // 각 조건마다 20점
+
+        Object.values(checks).forEach(check => {
+
+            if (check) strength += 20;
+
+        });
+
+        
+
+        // 길이 추가 보너스
+
+        if (password.length >= 12) strength += 10;
+
+        if (password.length >= 16) strength += 10;
+
+        
+
+        // 최대 100점으로 제한
+
+        strength = Math.min(strength, 100);
+
+        
+
+        return {
+
+            score: strength,
+
+            level: getStrengthLevel(strength),
+
+            color: getStrengthColor(strength)
+
+        };
+
+    }
+
+    
+
+    // 강도 레벨 반환
+
+    function getStrengthLevel(score) {
+
+        if (score >= 90) return '매우 강함';
+
+        if (score >= 70) return '강함';
+
+        if (score >= 50) return '보통';
+
+        if (score >= 30) return '약함';
+
+        return '매우 약함';
+
+    }
+
+    
+
+    // 강도 색상 반환
+
+    function getStrengthColor(score) {
+
+        if (score >= 90) return '#22c55e';
+
+        if (score >= 70) return '#84cc16';
+
+        if (score >= 50) return '#eab308';
+
+        if (score >= 30) return '#f97316';
+
+        return '#ef4444';
+
+    }
+
+    
+
+    // 디바운스 함수
+
+    function debounce(func, delay) {
+
+        let timeoutId;
+
+        return function(...args) {
+
+            clearTimeout(timeoutId);
+
+            timeoutId = setTimeout(() => func.apply(this, args), delay);
+
+        };
+
+    }
+
+    
+
+    // 페이지 로드 시 실행
+
+    window.addEventListener('DOMContentLoaded', function() {
+
+        const registrationForm = document.frm;
+
+        
+
+        // 이름 실시간 검증
+
+        registrationForm.name.addEventListener('input', debounce(function(e) {
+
+            const value = e.target.value.trim();
+
+            const errorSpan = document.getElementById('nameError');
+
+            
+
+            if (value === '') {
+
+                e.target.classList.remove('input-error', 'input-success');
+
+                errorSpan.classList.remove('show');
+
+                return;
+
+            }
+
+            
+
+            if (!VALIDATION_PATTERNS.fullName.test(value)) {
+
+                e.target.classList.add('input-error');
+
+                e.target.classList.remove('input-success');
+
+                errorSpan.classList.add('show');
+
+            } else {
+
+                e.target.classList.add('input-success');
+
+                e.target.classList.remove('input-error');
+
+                errorSpan.classList.remove('show');
+
+            }
+
+        }, 300));
+
+        
+
+        // 이메일 실시간 검증
+
+        registrationForm.mail.addEventListener('input', debounce(function(e) {
+
+            const value = e.target.value.trim();
+
+            const errorSpan = document.getElementById('mailError');
+
+            
+
+            if (value === '') {
+
+                e.target.classList.remove('input-error', 'input-success');
+
+                errorSpan.classList.remove('show');
+
+                return;
+
+            }
+
+            
+
+            if (!VALIDATION_PATTERNS.email.test(value)) {
+
+                e.target.classList.add('input-error');
+
+                e.target.classList.remove('input-success');
+
+                errorSpan.classList.add('show');
+
+            } else {
+
+                e.target.classList.add('input-success');
+
+                e.target.classList.remove('input-error');
+
+                errorSpan.classList.remove('show');
+
+            }
+
+        }, 300));
+
+        
+
+        // 비밀번호 강도 실시간 표시
+
+        registrationForm.pw.addEventListener('input', function(e) {
+
+            const password = e.target.value;
+
+            const strengthIndicator = document.getElementById('passwordStrength');
+
+            const strengthBar = document.getElementById('strengthBar');
+
+            
+
+            if (password === '') {
+
+                strengthIndicator.classList.remove('show');
+
+                return;
+
+            }
+
+            
+
+            const strength = calculatePasswordStrength(password);
+
+            strengthIndicator.classList.add('show');
+
+            strengthIndicator.textContent = `비밀번호 강도: ${strength.level}`;
+
+            strengthIndicator.style.color = strength.color;
+
+            
+
+            strengthBar.style.width = strength.score + '%';
+
+            strengthBar.style.background = strength.color;
+
+        });
+
+        
+
+        // 비밀번호 확인 실시간 검증
+
+        registrationForm.pwChk.addEventListener('input', function(e) {
+
+            const password = registrationForm.pw.value;
+
+            const confirmPassword = e.target.value;
+
+            const errorSpan = document.getElementById('pwChkError');
+
+            
+
+            if (confirmPassword === '') {
+
+                e.target.classList.remove('input-error', 'input-success');
+
+                errorSpan.classList.remove('show');
+
+                return;
+
+            }
+
+            
+
+            if (password !== confirmPassword) {
+
+                e.target.classList.add('input-error');
+
+                e.target.classList.remove('input-success');
+
+                errorSpan.classList.add('show');
+
+            } else {
+
+                e.target.classList.add('input-success');
+
+                e.target.classList.remove('input-error');
+
+                errorSpan.classList.remove('show');
+
+            }
+
+        });
+
+    });
+
+  </script>
+
+  
+
+  <style>
+
+    @keyframes shake {
+
+        0%, 100% { transform: translateX(0); }
+
+        10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+
+        20%, 40%, 60%, 80% { transform: translateX(5px); }
+
+    }
+
+  </style>
+
+</head>
+
+<body>
+
+  <div class="registration-container">
+
+    <div class="registration-header">
+
+      <h1>🚀 회원가입</h1>
+
+      <p>새로운 계정을 만들어보세요</p>
+
+    </div>
+
+    
+
+    <form action="#" name="frm" onsubmit="return validateRegistrationForm()">
+
+      <table>
+
+        <tr>
+
+          <th>이름</th>
+
+          <td>
+
+            <div class="input-group">
+
+              <input 
+
+                type="text" 
+
+                name="name" 
+
+                placeholder="특수문자와 숫자 제외 (2글자 이상)"
+
+                autofocus="autofocus"
+
+                aria-label="이름 입력"
+
+                aria-required="true"
+
+              />
+
+            </div>
+
+            <span class="error-message" id="nameError">
+
+              ⚠️ 이름은 한글 또는 영문만 사용 가능합니다 (2글자 이상)
+
+            </span>
+
+          </td>
+
+        </tr>
+
+        
+
+        <tr>
+
+          <th>이메일</th>
+
+          <td>
+
+            <div class="input-group">
+
+              <input 
+
+                type="text" 
+
+                name="mail" 
+
+                placeholder="example@email.com"
+
+                aria-label="이메일 입력"
+
+                aria-required="true"
+
+              />
+
+            </div>
+
+            <span class="error-message" id="mailError">
+
+              ⚠️ 올바른 이메일 형식이 아닙니다
+
+            </span>
+
+          </td>
+
+        </tr>
+
+        
+
+        <tr>
+
+          <th>비밀번호</th>
+
+          <td>
+
+            <div class="input-group">
+
+              <input 
+
+                type="password" 
+
+                name="pw" 
+
+                placeholder="소문자, 대문자, 숫자, 특수문자 포함 (4자 이상)"
+
+                aria-label="비밀번호 입력"
+
+                aria-required="true"
+
+              />
+
+            </div>
+
+            <div class="password-strength" id="passwordStrength">
+
+              비밀번호 강도: 매우 약함
+
+            </div>
+
+            <div class="strength-bar">
+
+              <div class="strength-bar-fill" id="strengthBar" style="width: 0%;"></div>
+
+            </div>
+
+          </td>
+
+        </tr>
+
+        
+
+        <tr>
+
+          <th>비밀번호 확인</th>
+
+          <td>
+
+            <div class="input-group">
+
+              <input 
+
+                type="password" 
+
+                name="pwChk" 
+
+                placeholder="비밀번호를 다시 입력하세요"
+
+                aria-label="비밀번호 확인 입력"
+
+                aria-required="true"
+
+              />
+
+            </div>
+
+            <span class="error-message" id="pwChkError">
+
+              ⚠️ 비밀번호가 일치하지 않습니다
+
+            </span>
+
+          </td>
+
+        </tr>
+
+        
+
+        <tr>
+
+          <td colspan="2">
+
+            <div class="button-group">
+
+              <input type="submit" value="✨ 회원가입" />
+
+              <input type="reset" value="🔄 초기화" />
+
+              <input type="button" value="🔐 로그인" onclick="location.href='login.html'" />
+
+            </div>
+
+          </td>
+
+        </tr>
+
+      </table>
+
+    </form>
+
+  </div>
+
+</body>
+
+</html>
