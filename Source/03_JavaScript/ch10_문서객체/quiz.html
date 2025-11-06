@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>색상 변경 Quiz</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      transition: background-color 0.3s ease;
+      background-color: white;
+    }
+    
+    h3 {
+      text-align: center;
+      margin-top: 50px;
+      color: #333;
+    }
+    
+    table {
+      width: 280px;
+      height: 100px;
+      margin: 10px auto;
+      border-collapse: collapse;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    }
+    
+    td {
+      cursor: pointer;
+      transition: transform 0.2s;
+    }
+    
+    td:hover {
+      transform: scale(1.1);
+      box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+    }
+    
+    .info {
+      text-align: center;
+      margin-top: 30px;
+      color: #666;
+      font-size: 14px;
+    }
+  </style>
+  <script>
+    // 마우스 올렸을 때: 배경색 변경
+    function changeBackground(color) {
+      document.body.style.backgroundColor = color;
+    }
+    
+    // 마우스 뗐을 때: 배경색 원상복귀
+    function resetBackground() {
+      document.body.style.backgroundColor = 'white';
+    }
+  </script>
+</head>
+<body>
+  <h3>quiz: 마우스를 올리면 바탕화면도 해당 색상으로</h3>
+  
+  <table>
+    <tr>
+      <td bgcolor="red" 
+          onmouseover="changeBackground('red')" 
+          onmouseout="resetBackground()"></td>
+      
+      <td bgcolor="orange" 
+          onmouseover="changeBackground('orange')" 
+          onmouseout="resetBackground()"></td>
+      
+      <td bgcolor="yellow" 
+          onmouseover="changeBackground('yellow')" 
+          onmouseout="resetBackground()"></td>
+      
+      <td bgcolor="green" 
+          onmouseover="changeBackground('green')" 
+          onmouseout="resetBackground()"></td>
+      
+      <td bgcolor="blue" 
+          onmouseover="changeBackground('blue')" 
+          onmouseout="resetBackground()"></td>
+      
+      <td bgcolor="navy" 
+          onmouseover="changeBackground('navy')" 
+          onmouseout="resetBackground()"></td>
+      
+      <td bgcolor="violet" 
+          onmouseover="changeBackground('violet')" 
+          onmouseout="resetBackground()"></td>
+    </tr>
+  </table>
+  
+  <p class="info">
+    💡 각 색상 칸에 마우스를 올려보세요!
+  </p>
+</body>
+</html>
