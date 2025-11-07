@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>Quiz1 - 표준 이벤트 모델</title>
+  <style>
+    ul{overflow: hidden;}
+    li{float: left; list-style: none; margin: 3px;}
+  </style>
+  <script>
+    var overImg = ['ch11_img/0over.jpg', 'ch11_img/1over.jpg', 'ch11_img/2over.jpg', 'ch11_img/3over.jpg'];
+    var outImg = ['ch11_img/0out.jpg', 'ch11_img/1out.jpg', 'ch11_img/2out.jpg', 'ch11_img/3out.jpg'];
+    
+    window.onload = function(){
+      var images = document.querySelectorAll('ul li img');
+      
+      // 표준 이벤트 모델: addEventListener 사용
+      for(var i = 0; i < images.length; i++){
+        // 클로저 문제 해결을 위해 즉시실행함수 사용
+        (function(idx){
+          images[idx].addEventListener('mouseover', function(){
+            // this : 이벤트가 발생한 이미지 엘리먼트
+            this.src = overImg[idx];
+          });
+          
+          images[idx].addEventListener('mouseout', function(){
+            // this : 이벤트가 발생한 이미지 엘리먼트
+            this.src = outImg[idx];
+          });
+        })(i);
+      }
+    };
+  </script>
+</head>
+<body>
+  <h2>표준 이벤트 모델 (addEventListener)</h2>
+  <ul>
+    <li><a href="#"><img src="ch11_img/0out.jpg" /></a></li>
+    <li><a href="#"><img src="ch11_img/1out.jpg" /></a></li>
+    <li><a href="#"><img src="ch11_img/2out.jpg" /></a></li>
+    <li><a href="#"><img src="ch11_img/3out.jpg" /></a></li>
+  </ul>
+</body>
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>Quiz3 - 인라인 이벤트 모델</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 50px;
+    }
+    img {
+      cursor: pointer;
+      user-select: none;
+    }
+  </style>
+  <script>
+    function mouseDown(element) {
+      element.src = 'ch11_img/but2.gif';
+      element.alt = 'mouse down';
+    }
+    
+    function mouseUp(element) {
+      element.src = 'ch11_img/but1.gif';
+      element.alt = 'mouse up';
+    }
+  </script>
+</head>
+<body id="artifacts-component-root-html">
+  <h2>인라인 이벤트 모델</h2>
+  <img src="ch11_img/but1.gif" alt="mouse up" 
+      onmousedown="mouseDown(this)" 
+      onmouseup="mouseUp(this)" />
+</body>
+</html>

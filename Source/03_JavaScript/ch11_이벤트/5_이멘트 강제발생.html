@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0" />
+  <title></title>
+  <script>
+    window.onload = ()=>{
+      let btnA = document.getElementById('btnA')
+      let btnB = document.getElementById('btnB')
+      let countA = document.querySelector('#countA')
+      let countB = document.querySelector('#countB')
+      btnA.onclick = () => {
+        countA.innerHTML = parseInt(countA.innerHTML) + 1;
+        //
+        btnB.onclick();
+      };
+      btnB.onclick = () => countB.innerHTML = Number(countB.innerHTML) + 1; 
+    };
+  </script>
+</head>
+<body>
+  <button id="btnA">Button A</button>
+  <button id="btnB">Button B</button>
+  <h1>Button A 클릭 횟수 - <span id="countA">0</span></h1>
+  <h1>Button B 클릭 횟수 - <span id="countB">0</span></h1>  
+</body>
+</html>
